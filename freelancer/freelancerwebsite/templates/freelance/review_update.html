@@ -1,0 +1,92 @@
+{%csrf_token%}
+{% load crispy_forms_tags %}
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'Main-Page' %}">Freelancer Website</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'Main-Page' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+        {%if user.is_authenticated %}
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'jobpost' %}">Post A Job</a>
+        </li>
+              <li class="nav-item">
+        <a class="nav-link" href="{% url 'review' %}">Write Review</a>
+      </li>
+	       </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'home-review' %}">View Reviews</a>
+      </li>
+
+
+         {%else%}
+               <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'register' %}">Register</a>
+      </li>
+        {%endif%}
+
+
+    </ul>
+  </div>
+</nav>
+
+</html>
+
+<div class="container mt-5">
+	    	<div class="row justify-content-center">
+	            <div class="col-md-8 mt-2">
+					<div class="card">
+						<div class="card-header card-header-primary">
+							<div class="text-center"> 
+								<h4 class="card-title"> Update Your Review! </h4>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-8 offset-lg-2">
+								<div class="p-2">
+										<form class = "frm" method="POST">
+										{% csrf_token %}
+										<fieldset class="form-group">
+											{{ form | crispy }}
+											<div class="text-center">
+												<button type="submit" value="Register" class="btn btn-block btn-primary">
+													Update Review!
+												</button>
+											</div>
+											
+										</fieldset>
+										<hr>
+									</form>
+
+								</div>
+							</div>
+						</div>
+					</div>
+	            </div>
+	        </div>
+
+	    </div>
+
+</body>
+</html>
